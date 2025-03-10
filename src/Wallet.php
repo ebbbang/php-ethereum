@@ -6,21 +6,19 @@ use kornrunner\Ethereum\Address;
 
 class Wallet
 {
-    protected function __construct(
-        protected string $address,
-        protected string $publicKey,
-        protected string $privateKey
-    ) {}
+    private string $address;
 
-    public static function create(string $privateKey = ''): Wallet
+    private string $publicKey;
+
+    private string $privateKey;
+
+    public function __construct(string $privateKey = '')
     {
         $address = new Address($privateKey);
 
-        return new self(
-            $address->get(),
-            $address->getPublicKey(),
-            $address->getPrivateKey()
-        );
+        $this->address = $address->get();
+        $this->publicKey = $address->getPublicKey();
+        $this->privateKey = $address->getPrivateKey();
     }
 
     public function address(bool $prefix = true): string

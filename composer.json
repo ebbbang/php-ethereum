@@ -4,6 +4,8 @@
     "type": "library",
     "require": {
         "php": "^8.2",
+        "brick/math": "^0.13.0",
+        "guzzlehttp/guzzle": "^7.9",
         "kornrunner/ethereum-address": "^0.3.0"
     },
     "autoload": {

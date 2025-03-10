@@ -1,0 +1,41 @@
+name: Run Pest Tests with Hardhat
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          tools: composer
+
+      - name: Install Node.js Dependencies
+        run: npm install
+
+      - name: Install PHP Dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Start Hardhat Node
+        run: |
+          nohup npx hardhat node > hardhat.log 2>&1 &
+          echo "Waiting for Hardhat to start..."
+          while ! nc -z localhost 8545; do sleep 1; done
+          echo "Hardhat started successfully."
+
+      - name: Run Pest Tests
+        run: vendor/bin/pest
+
+      - name: Stop Hardhat Node
+        run: pkill -f "node .*hardhat" || true

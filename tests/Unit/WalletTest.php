@@ -3,7 +3,7 @@
 use Ebbbang\PhpEthereum\Wallet;
 
 test('it creates random wallets', function () {
-    $wallet = Wallet::create();
+    $wallet = new Wallet;
 
     expect($wallet->address())
         ->toStartWith('0x')
@@ -22,7 +22,7 @@ test('it creates random wallets', function () {
 test('it creates wallet for given privateKey', function () {
     $privateKey = '3d592f1a05870605e2e1e37546ff89fec9659067f429ebb8f4026c9c52f1e82c';
 
-    $wallet = Wallet::create($privateKey);
+    $wallet = new Wallet($privateKey);
 
     expect($wallet->address())
         ->toBe('0x95ea00e09217c7522a18a12676e2448de71d2990')
@@ -33,7 +33,7 @@ test('it creates wallet for given privateKey', function () {
 });
 
 test('it returns address with prefix', function () {
-    $wallet = Wallet::create();
+    $wallet = new Wallet;
 
     expect($wallet->address())
         ->toStartWith('0x')
@@ -41,7 +41,7 @@ test('it returns address with prefix', function () {
 });
 
 test('it returns address without prefix', function () {
-    $wallet = Wallet::create();
+    $wallet = new Wallet;
 
     expect($wallet->address(prefix: false))
         ->toHaveLength(40)
@@ -49,7 +49,7 @@ test('it returns address without prefix', function () {
 });
 
 test('it returns publicKey', function () {
-    $wallet = Wallet::create();
+    $wallet = new Wallet;
 
     expect($wallet->publicKey())
         ->toHaveLength(128)
@@ -57,7 +57,7 @@ test('it returns publicKey', function () {
 });
 
 test('it returns privateKey', function () {
-    $wallet = Wallet::create();
+    $wallet = new Wallet;
 
     expect($wallet->privateKey())
         ->toHaveLength(64)
