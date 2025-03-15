@@ -8,5 +8,5 @@ test('fetches ether balance', function () {
 
     $network = new Ethereum('http://127.0.0.1:8545');
 
-    expect($network->balanceOf($address))->toEqual(new Wei('10000000000000000000000'));
+    expect($network->balanceOf($address))->toEqual(Wei::of('10000000000000000000000'));
 });

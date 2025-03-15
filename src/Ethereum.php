@@ -28,6 +28,6 @@ class Ethereum
 
         $balance = $this->rpc->callMethod('eth_getBalance', [$address, 'latest']);
 
-        return new Wei($balance);
+        return Wei::of($balance);
     }
 }

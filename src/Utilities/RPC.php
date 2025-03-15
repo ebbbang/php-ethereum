@@ -29,11 +29,11 @@ class RPC
     {
         $response = $this->client->post('', [
             'json' => [
-                "id" => 1,
-                "jsonrpc" => "2.0",
-                "method" => $method,
-                "params" => $params,
-            ]
+                'id' => 1,
+                'jsonrpc' => '2.0',
+                'method' => $method,
+                'params' => $params,
+            ],
         ]);
 
         return json_decode($response->getBody()->getContents())->result;

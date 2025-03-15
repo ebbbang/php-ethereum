@@ -2,10 +2,10 @@
 
 namespace Ebbbang\PhpEthereum\Units;
 
-class Wei extends BaseUnit
+class Kwei extends BaseUnit
 {
     protected static function weiPower(): int
     {
-        return 0;
+        return 3;
     }
 }
